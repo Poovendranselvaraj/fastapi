@@ -15,6 +15,9 @@ class Post(Base):
 
     owner = relationship("User")
 
+    def __repr__(self):
+        return f"Post(id={self.id}, title={self.title}, content={self.content}, published={self.published}, created_at={self.created_at}, owner_id={self.owner_id})"
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, nullable=False)
