@@ -17,10 +17,9 @@ def get_posts(db: Session = Depends(get_db),current_user:int = Depends(oauth2.ge
     # posts=cursor.fetchall()
     posts=db.query(models.Post).filter(models.Post.title.contains(search)).limit(limit).offset(skip).all() 
     
-    results=db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(models.Vote, models.Vote.post_id == models.Post.id, isouter=True).group_by(models.Post.id).all()
-    
-    results = [{**vars(post), 'votes': votes} for post, votes in results]
-    return results 
+    results=db.query(models.Post, func.count(models.Vote.post_id).label("votes")).join(
+        models.Vote, models.Vote.post_id == models.Post.id, isouter=True).group_by(models.Post.id).all()
+    return results
 
 @router.post("/",status_code=status.HTTP_201_CREATED,response_model=schemas.Post)
 def create_posts(post: schemas.PostCreate,db: Session = Depends(get_db),current_user:int = Depends(oauth2.get_current_user)):

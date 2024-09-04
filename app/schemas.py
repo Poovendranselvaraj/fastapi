@@ -27,7 +27,8 @@ class Post(PostBase):
     class Config:
         orm_mode = True 
 
-class PostOut(PostBase): 
+
+class PostOut(BaseModel):
     Post: Post
     votes: int    
     class Config:
@@ -47,7 +48,7 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    id: Optional[str] = None   
+    id: Optional[str] = None
 
 class Vote(BaseModel):
     post_id:int
