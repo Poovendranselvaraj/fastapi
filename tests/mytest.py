@@ -1,5 +1,5 @@
 
-from ..app.calculations import add
+from app.calculations import add
 def test_add():
     print("testing_add function")
     sum=add(5, 3)
