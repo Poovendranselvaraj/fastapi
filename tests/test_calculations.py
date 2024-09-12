@@ -15,18 +15,13 @@ def test_add(num1,num2,expected):
     print("testing add function")
     assert add(num1,num2) == expected
 
-   
-def test_subtract():
-    print("testing subtract function")
-    assert subtract(9,4) == 5
 
+def test_subtract():
+    assert subtract(9,4) == 5
 def test_multiply():
-    print("testing multiply function")
     assert multiply(4,3) == 12  
 
-
 def test_divide():
-    print("testing divide function")
     assert divide(20,5) == 4  
 
 def test_bank_set_initial_amount(bank_account):
@@ -46,7 +41,7 @@ def test_deposit(bank_account):
 
 def test_collect_interest(bank_account):
     bank_account.collect_interest()
-    assert round(bank_account.balance,6) == 110   
+    assert round(bank_account.balance,6) == 110
 
 @pytest.mark.parametrize("deposited,withdrew,expected", [
     (200,100,100),
@@ -62,3 +57,4 @@ def test_bank_transaction(zero_bank_account,deposited,withdrew,expected):
 def test_insufficient_funds(bank_account):
     with pytest.raises(InsufficientFunds):
         bank_account.withdraw(200)    
+
