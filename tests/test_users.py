@@ -14,3 +14,4 @@ def test_create_user():
     print(res.json())   
     assert res.json().get('email')=='hello123@example.com'  
     assert res.status_code==201    
+   
